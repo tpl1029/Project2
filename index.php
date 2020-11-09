@@ -9,7 +9,7 @@ canvas {
 }
 </style>
 </head>
-<body>
+<body >
 
 <script>
 
@@ -22,11 +22,24 @@ canvas {
 
 
     function startGame() {
-        mybird = new component (30, 30, blue, 0, 0)
+        mybird = new component (30, 30, "blue", 0, 0)
         mybird.gravity =
         myScore = new component ()
-        gamearea.start();
+        gameScreen.start();
     }
+
+    gameScreen = {
+        canvas: document.createElement("canvas");
+        start: function(){
+            this.canvas.height = 400px;
+            this.canvas.width = 400px;
+            this.context = this.canvas.getContext("2d");
+            document.body.insertBefore(this.canvas, document.Body.childNodes[0])
+            this.frameNo = 0;
+        }
+
+    }
+    
 
 
     function component(height, width, color, x, y, type) {
