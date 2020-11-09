@@ -10,7 +10,11 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
+<img id='bird' width='50' height='50' src="./Public/Images/flappy-bird.gif">
+
+
 <script>
+var img = document.getElementById("bird")
 
 var myGamePiece;
 var myObstacles = [];
@@ -18,7 +22,7 @@ var myScore;
 
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
+    myGamePiece = new component(30, 30, "./Public/Images/flappy-bird.gif", 10, 120, "image");
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
@@ -42,6 +46,10 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+        if (type == "image") {
+            this.image = new Image();
+            this.image.src = color;
+        }
     this.score = 0;
     this.width = width;
     this.height = height;
@@ -57,6 +65,12 @@ function component(width, height, color, x, y, type) {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(this.text, this.x, this.y);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+        if (type == "image") {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
