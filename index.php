@@ -9,11 +9,13 @@ canvas {
 }
 </style>
 </head>
-<body onload="startGame()">
+<body>
 <script>
 
 
-
+var mybird;
+var myobstacles[];
+var myScore;
 
 
 
@@ -25,6 +27,7 @@ canvas {
 
 </script>
 <br>
+
 <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
