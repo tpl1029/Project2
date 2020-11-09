@@ -10,28 +10,37 @@ canvas {
 </style>
 </head>
 <body>
+
 <script>
 
+    var mybird;
+    var myobstacles = [];
+    var myScore = 0;
+    var myHighScore = 0;
 
-var mybird;
-var myobstacles[];
-var myScore;
-
-function startGame() {
-    mybird = new component {}
-
-}
+    var gameScreen;
 
 
-function component(height, width, color, x, y, type) {
-    this.height = height
-    this.width = width
-    this.color = color
-    this.x= x
-    this.y = y
-    this.type 
+    function startGame() {
+        mybird = new component (30, 30, blue, 0, 0)
+        mybird.gravity =
+        myScore = new component ()
+        gamearea.start();
+    }
 
-}
+
+    function component(height, width, color, x, y, type) {
+        this.height = height
+        this.width = width
+        this.color = color
+        this.x = x
+        this.y = y
+        this.type = type
+        this.gravity = 0
+        this.gravity_speed = 0
+        this.SpeedX = 0;
+        this.SpeedY = 0;
+    }
 
 
 
