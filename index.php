@@ -10,16 +10,17 @@ canvas {
 </style>
 </head>
 <body>
+
+
+
 <script>
 
-
 var mybird;
-var myobstacles[];
-var myScore;
+var myobstacles = [];
+var myScore = 0;
+var myHighScore = 0;
 
-
-
-
+var gameScreen;
 
 
 
