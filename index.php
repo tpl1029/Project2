@@ -11,10 +11,9 @@ canvas {
 </head>
 <body>
 
-<script>
-    
 <button class='btn-contact btn btn-success' style ='background-color: #goldenrod; border: none;' onclick='startGame()'>Start Game</button>
 
+<script>
 
     var mybird;
     var myobstacles = [];
