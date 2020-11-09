@@ -9,7 +9,7 @@ canvas {
 }
 </style>
 </head>
-<body >
+<body>
 
 <button class='btn-contact btn btn-success' style ='background-color: #goldenrod; border: none;' onclick='startGame()'>Start Game</button>
 
@@ -24,24 +24,11 @@ canvas {
 
 
     function startGame() {
-        mybird = new component (30, 30, "blue", 0, 0)
+        mybird = new component (30, 30, blue, 0, 0)
         mybird.gravity =
         myScore = new component ()
-        gameScreen.start();
+        gamearea.start();
     }
-
-    gameScreen = {
-        canvas: document.createElement("canvas");
-        start: function(){
-            this.canvas.height = 400px;
-            this.canvas.width = 400px;
-            this.context = this.canvas.getContext("2d");
-            document.body.insertBefore(this.canvas, document.Body.childNodes[0])
-            this.frameNo = 0;
-        }
-
-    }
-    
 
 
     function component(height, width, color, x, y, type) {
@@ -58,15 +45,3 @@ canvas {
     }
 
 
-
-
-
-
-</script>
-<br>
-
-<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
-<p>Use the ACCELERATE button to stay in the air</p>
-<p>How long can you stay alive?</p>
-</body>
-</html>
