@@ -11,10 +11,9 @@ canvas {
 </head>
 <body>
 
-<script>
-    
 <button class='btn-contact btn btn-success' style ='background-color: #goldenrod; border: none;' onclick='startGame()'>Start Game</button>
 
+<script>
 
     var mybird;
     var myobstacles = [];
@@ -46,15 +45,3 @@ canvas {
     }
 
 
-
-
-
-
-</script>
-<br>
-
-<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
-<p>Use the ACCELERATE button to stay in the air</p>
-<p>How long can you stay alive?</p>
-</body>
-</html>
