@@ -38,9 +38,11 @@ canvas {
             this.context = this.canvas.getContext("2d");
             document.body.insertBefore(this.canvas, document.Body.childNodes[0])
             this.frameNo = 0;
+            this.interval setInterval(updategameScreen, 20)
         }
-
-    }
+        clear: function(){
+            this.context.clearRect(0,0, this.canvas.height, this.canvas,width)
+        }
     
 
 
@@ -55,6 +57,10 @@ canvas {
         this.gravity_speed = 0
         this.SpeedX = 0;
         this.SpeedY = 0;
+        this.scoreText = function () {
+            ctx = gameScreen.context
+            if (this.type == "text")
+        }
     }
 
 
