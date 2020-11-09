@@ -17,8 +17,21 @@ var mybird;
 var myobstacles[];
 var myScore;
 
+function startGame() {
+    mybird = new component {}
+
+}
 
 
+function component(height, width, color, x, y, type) {
+    this.height = height
+    this.width = width
+    this.color = color
+    this.x= x
+    this.y = y
+    this.type 
+
+}
 
 
 
