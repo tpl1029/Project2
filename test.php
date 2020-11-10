@@ -138,7 +138,7 @@ function component(width, height, color, x, y, type) {
             crash = false; 
         }
         displayForm();
-        return crash;
+        return crash;        
 
     }
 }
@@ -214,6 +214,10 @@ function displayForm() {
   } else {
     x.style.display = "none";
   }
+}
+
+function myStopFunction() {
+  clearInterval(this.interval);
 }
 
 // function displayForever() {
