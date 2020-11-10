@@ -10,6 +10,15 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
+<?php
+
+session_start();
+
+if(isset($_POST["name"])) 
+setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 30), "/");
+echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>"; 
+
+?>
 <img id='bird' width='50' height='50' src="./Public/Images/flappy-bird.gif">
 
 <audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
@@ -22,6 +31,9 @@ var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myBonk;
+
+
+
 
 function startGame() {
     myGamePiece = new component(30, 30, "./Public/Images/flappy-bird.gif", 10, 120, "image");
@@ -192,8 +204,21 @@ function play() {
 
 <br>
 
-<button onmousedown="accelerate(-7.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
+<button onmousedown="accelerate(-0.8)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
+
+
+
+<div id="myForm" ></div>
+  <form action="" method = "post" >
+    <label for="name"><b>Please Enter Your Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    <button type="submit" class="btn">Go!</button>
+      </form>
+</div> 
+
+
+
 </body>
 </html>
