@@ -226,18 +226,6 @@ function displayForm() {
   }
 }
 
-<<<<<<< HEAD
-function myStopFunction() {
-  clearInterval(this.interval);
-}
-
-// function displayForever() {
-//     var x = document.getElementById("myForm");
-//   if (x.style.display === "none") {
-//     x.style.display = "block";
-//   }
-// }
-=======
 function displayForever() {
     var x = document.getElementById("myForm");
   if (x.style.display === "none") {
@@ -245,7 +233,6 @@ function displayForever() {
   }
 }
 
->>>>>>> db7b816c5d0afca0d51cf8e01c130605eef3cf2c
 
 </script>
 
