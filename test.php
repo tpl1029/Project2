@@ -162,7 +162,7 @@ function accelerate(n) {
 
 function sound(src) {
     this.sound = documentcreateElement("audio");
-    this.sound.src = "";
+    this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
