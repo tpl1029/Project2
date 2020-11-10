@@ -106,13 +106,14 @@ function component(width, height, color, x, y, type) {
             }
         }
         this.hitBottom();
+        this.hitTop();
     }
 
     this.hitTop = function() {
         var topMax = myGameArea.canvas.height;
-        if (this.y < topMax) {
-            this.y = topMax;
-            this.gravitySpeed = 0;
+        if (this.y < 0) {
+            this.y = 0;
+            this.gravitySpeed = 0;          
         }
     }
 
@@ -121,9 +122,11 @@ function component(width, height, color, x, y, type) {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
             this.y = rockbottom;
-            this.gravitySpeed = 0;
+            this.gravitySpeed = 0;  
         }
     }
+
+
     this.crashWith = function(otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
@@ -137,16 +140,20 @@ function component(width, height, color, x, y, type) {
         if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
             crash = false; 
         }
-        displayForm();
+        // displayForever();
+        //console.log(this.y);
         return crash;
 
     }
 }
 
+var testScore = -3;
+
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
+            displayForever();
             return;
         } 
     }
@@ -165,12 +172,15 @@ function updateGameArea() {
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(10, height, "green", x, 0));
         myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        testScore++;
+        console.log(testScore);
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text="SCORE: " + myGameArea.frameNo;
+    // myScore.text="SCORE: " + myGameArea.frameNo;
+    myScore.text="SCORE: " + testScore;
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
@@ -216,12 +226,13 @@ function displayForm() {
   }
 }
 
-// function displayForever() {
-//     var x = document.getElementById("myForm");
-//   if (x.style.display === "none") {
-//     x.style.display = "block";
-//   }
-// }
+function displayForever() {
+    var x = document.getElementById("myForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  }
+}
+
 
 </script>
 
