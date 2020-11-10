@@ -19,13 +19,14 @@ var img = document.getElementById("bird")
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-
+var myBonk;
 
 function startGame() {
     myGamePiece = new component(30, 30, "./Public/Images/flappy-bird.gif", 10, 120, "image");
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myBackground = new component(656, 270, "./Public/Images/background.png", 0, 0, "background" );
+    myBonk = new sound("./Public/Sounds/bonk2.mp3")
     myGameArea.start();
 }
 
@@ -139,6 +140,7 @@ function updateGameArea() {
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(10, height, "green", x, 0));
         myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        myBonk.play();
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
