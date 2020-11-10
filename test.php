@@ -74,7 +74,7 @@ function component(width, height, color, x, y, type) {
         if (type == "image" || type == "background") {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
             if (type =="background") {
-            ctx.drawImage(this.image, this.x, this.width, this.y, this.height);
+            ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
         }
         } else {
             ctx.fillStyle = color;
@@ -91,16 +91,6 @@ function component(width, height, color, x, y, type) {
             }
         }
         this.hitBottom();
-    }
-
-    this.newBack = function() {
-        this.x += this.speedX;
-        this.y += this.speedY
-        if(this.type =="background"){
-            if(this.x == -(this.width)) {
-                this.x = 0;
-            }
-        }       
     }
 
     this.hitBottom = function() {
