@@ -128,6 +128,7 @@ function component(width, height, color, x, y, type) {
             crash = false;
         }
         return crash;
+
     }
 }
 
@@ -210,7 +211,7 @@ function play() {
 
 
 
-<div id="myForm" ></div>
+<div id="myForm" display = "none" ></div>
   <form action="" method = "post" >
     <label for="name"><b>Please Enter Your Name</b></label>
     <input type="text" placeholder="Enter Name" name="name" required>
