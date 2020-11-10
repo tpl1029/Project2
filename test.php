@@ -24,14 +24,15 @@ echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>";
 <audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
 <button onclick='play()'>BONK</button>
 
+<button onclick="myFunction()">HideTest</button>
+
 <script>
 var img = document.getElementById("bird")
 
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-var myBonk;
-
+var hide;
 
 
 
@@ -191,16 +192,19 @@ function accelerate(n) {
 //     }
 // }
 
-function intervalBonk() {
-    myBonk.sound.play();
-};
-
 function play() {
         var audio = document.getElementById("audio");
         audio.play();
 };
 
-
+function myFunction() {
+  var x = document.getElementById("myForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 </script>
 
 <br>
@@ -211,8 +215,8 @@ function play() {
 
 
 
-<div id="myForm" display = "none" ></div>
-  <form action="" method = "post" >
+<div id="myForm">
+  <form action="" method = "post">
     <label for="name"><b>Please Enter Your Name</b></label>
     <input type="text" placeholder="Enter Name" name="name" required>
     <button type="submit" class="btn">Go!</button>
