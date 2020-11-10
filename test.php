@@ -24,7 +24,7 @@ echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>";
 <audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
 <button onclick='play()'>BONK</button>
 
-<button onclick="myFunction()">HideTest</button>
+<button onclick="displayForm()">HideTest</button>
 
 <script>
 var img = document.getElementById("bird")
@@ -197,7 +197,7 @@ function play() {
         audio.play();
 };
 
-function myFunction() {
+function displayForm() {
   var x = document.getElementById("myForm");
   if (x.style.display === "none") {
     x.style.display = "block";
