@@ -215,7 +215,7 @@ function myFunction() {
 
 
 
-<div id="myForm">
+<div id="myForm" style="display: none">
   <form action="" method = "post">
     <label for="name"><b>Please Enter Your Name</b></label>
     <input type="text" placeholder="Enter Name" name="name" required>
