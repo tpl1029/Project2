@@ -25,6 +25,7 @@ function startGame() {
     myGamePiece = new component(30, 30, "./Public/Images/flappy-bird.gif", 10, 120, "image");
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myBackground = new component(656, 270, "./Public/Images/background.png", 0, 0, "background" );
     myGameArea.start();
 }
 
@@ -46,10 +47,11 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
-        if (type == "image") {
+        if (type == "image" || type == "background") {
             this.image = new Image();
             this.image.src = color;
         }
+
     this.score = 0;
     this.width = width;
     this.height = height;
@@ -69,8 +71,11 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
-        if (type == "image") {
+        if (type == "image" || type == "background") {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+            if (type =="background") {
+            ctx.drawImage(this.image, this.x, this.width, this.y, this.height);
+        }
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -80,8 +85,24 @@ function component(width, height, color, x, y, type) {
         this.gravitySpeed += this.gravity;
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
+        if(this.type =="background"){
+            if(this.x == -(this.width)) {
+                this.x = 0;
+            }
+        }
         this.hitBottom();
     }
+
+    this.newBack = function() {
+        this.x += this.speedX;
+        this.y += this.speedY
+        if(this.type =="background"){
+            if(this.x == -(this.width)) {
+                this.x = 0;
+            }
+        }       
+    }
+
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
@@ -114,6 +135,9 @@ function updateGameArea() {
         } 
     }
     myGameArea.clear();
+    myBackground.speedX = -1;
+    myBackground.newPos();
+    myBackground.update();
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
@@ -134,6 +158,7 @@ function updateGameArea() {
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
+   
 }
 
 function everyinterval(n) {
