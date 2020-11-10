@@ -159,6 +159,22 @@ function everyinterval(n) {
 function accelerate(n) {
     myGamePiece.gravity = n;
 }
+
+function sound(src) {
+    this.sound = documentcreateElement("audio");
+    this.sound.src = "";
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.append.Child(this.sound);
+    this.play = function() {
+        this.sound.play();
+    }
+    this.stop = function() {
+        this.sound.pause();
+    }
+}
+
 </script>
 <br>
 <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
