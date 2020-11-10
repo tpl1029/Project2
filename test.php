@@ -12,6 +12,8 @@ canvas {
 <body onload="startGame()">
 <img id='bird' width='50' height='50' src="./Public/Images/flappy-bird.gif">
 
+<audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
+<button onclick='play()'>BONK</button>
 
 <script>
 var img = document.getElementById("bird")
@@ -26,7 +28,6 @@ function startGame() {
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myBackground = new component(656, 270, "./Public/Images/background.png", 0, 0, "background" );
-    myBonk = new sound("./Public/Sounds/bonk2.mp3")
     myGameArea.start();
 }
 
@@ -140,7 +141,6 @@ function updateGameArea() {
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(10, height, "green", x, 0));
         myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
-        myBonk.play();
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
@@ -150,7 +150,8 @@ function updateGameArea() {
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
-   
+
+
 }
 
 function everyinterval(n) {
@@ -162,24 +163,36 @@ function accelerate(n) {
     myGamePiece.gravity = n;
 }
 
-function sound(src) {
-    this.sound = documentcreateElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.append.Child(this.sound);
-    this.play = function() {
-        this.sound.play();
-    }
-    this.stop = function() {
-        this.sound.pause();
-    }
-}
+// function sound(src) {
+//     this.sound = documentcreateElement("audio");
+//     this.sound.src = src;
+//     this.sound.setAttribute("preload", "auto");
+//     this.sound.setAttribute("controls", "none");
+//     this.sound.style.display = "none";
+//     document.body.appendChild(this.sound);
+//     this.play = function() {
+//         this.sound.play();
+//     }
+//     this.stop = function() {
+//         this.sound.pause();
+//     }
+// }
+
+function intervalBonk() {
+    myBonk.sound.play();
+};
+
+function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+};
+
 
 </script>
+
 <br>
-<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
+
+<button onmousedown="accelerate(-7.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
 </body>
