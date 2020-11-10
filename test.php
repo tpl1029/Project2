@@ -135,8 +135,9 @@ function component(width, height, color, x, y, type) {
         var otherbottom = otherobj.y + (otherobj.height);
         var crash = true;
         if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-            crash = false;
+            crash = false; 
         }
+        displayForm();
         return crash;
 
     }
@@ -214,6 +215,14 @@ function displayForm() {
     x.style.display = "none";
   }
 }
+
+// function displayForever() {
+//     var x = document.getElementById("myForm");
+//   if (x.style.display === "none") {
+//     x.style.display = "block";
+//   }
+// }
+
 </script>
 
 <br>
