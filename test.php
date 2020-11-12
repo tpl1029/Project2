@@ -241,6 +241,8 @@ function retry(){
   if (x.style.display === "none") {
     x.style.display = "block";
   }
+
+  
 }
 
 </script>
@@ -248,7 +250,7 @@ function retry(){
 
 <button onclick="startGame()">Start the Game!</button>
 <button onmousedown="accelerate(-0.8)" onmouseup="accelerate(0.05)">ACCELERATE</button>
-<br> <button onclick="startGame()" id="retry_btn" style="display: none">Try Again?</button>
+<button onclick="location.reload();" id="retry_btn" style="display: none">Try Again?</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
 
