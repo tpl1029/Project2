@@ -9,7 +9,7 @@ canvas {
 }
 </style>
 </head>
-<body onload="startGame()">
+<body onload="loadgame()">
 <?php
 
 session_start();
@@ -19,7 +19,7 @@ setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 30), "
 echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>"; 
 
 ?>
-<img id='bird' width='50' height='50' src="./Public/Images/flappy-bird.gif">
+<img id='bird' width='50' height='50' style="display: none" src="./Public/Images/flappy-bird.gif">
 
 <audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
 <button onclick='play()'>BONK</button>
@@ -34,14 +34,16 @@ var myObstacles = [];
 var myScore;
 var hide;
 
-
+function loadgame(){
+    myGameArea.start();
+    
+}
 
 function startGame() {
     myGamePiece = new component(30, 30, "./Public/Images/flappy-bird.gif", 10, 120, "image");
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    myBackground = new component(656, 270, "./Public/Images/background.png", 0, 0, "background" );
-    myGameArea.start();
+    myBackground = new component(656, 270, "./Public/Images/background.png", 0, 0, "background" );    
 }
 
 
@@ -154,6 +156,7 @@ function updateGameArea() {
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
             displayForever();
+            retry();
             return;
         } 
     }
@@ -233,12 +236,19 @@ function displayForever() {
   }
 }
 
+function retry(){
+    var x = document.getElementById("retry_btn");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  }
+}
 
 </script>
 
-<br>
 
+<button onclick="startGame()">Start the Game!</button>
 <button onmousedown="accelerate(-0.8)" onmouseup="accelerate(0.05)">ACCELERATE</button>
+<br> <button onclick="startGame()" id="retry_btn" style="display: none">Try Again?</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
 
