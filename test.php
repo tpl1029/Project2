@@ -13,13 +13,11 @@ canvas {
 <?php
 
 session_start();
-
-
-
-
-if(isset($_POST["name"])) 
+if(isset($_POST['name']) && isset($_POST['score'])) {
 setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 30), "/");
-echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>"; 
+setcookie("myScore", trim(htmlentities($_POST['score'])), time()+(86400 * 30), "/");
+echo " <p> Hello: {$_COOKIE['username']}. Your high score is: {$_COOKIE['myScore']} </p>";
+} 
 
 ?>
 <img id='bird' width='50' height='50' style="display: none" src="./Public/Images/flappy-bird.gif">
@@ -35,11 +33,13 @@ echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>";
 //             echo " <p> The high score is {$_COOKIE['password']} </p>";}  ?>;
 
 var img = document.getElementById("bird")
-
-var myGamePiece;
-var myObstacles = [];
-var myScore = 0;
-var hide;
+// global variables
+    var myGamePiece;
+    var myObstacles = [];
+    var myScore = 0;
+    var hide;
+    var testScore = -3;
+// global variables
 
 function loadgame(){
     myGameArea.start();
@@ -156,19 +156,17 @@ function component(width, height, color, x, y, type) {
     }
 }
 
-var testScore = -3;
+
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {           
-            if (testScore > myScore ) {
+             {
                 displayForever();
                 finalScore();
-                
-            } else{
-            retry();            
-            return;            
+                retry();            
+                return;
             } 
         }
     }
@@ -242,6 +240,7 @@ function displayForm() {
 }
 
 function displayForever() {
+
     var x = document.getElementById("myForm");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -260,8 +259,7 @@ function retry(){
 //   }  
 
   function finalScore(){
-    myScore = document.cookie = testScore;
-    document.getElementById("endScore").innerHTML = myScore;
+   document.getElementById("score").value = testScore;
   }
   
 
@@ -277,11 +275,12 @@ function retry(){
 
 
 <div id="myForm" style="display: none">
-  <form action="" method = "post">
-    <label for="name"><b>Please Enter Your Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required>
-    <button type="submit" class="btn">Go!</button>
-      </form>
+    <form action="" method = "post">
+        <label for="name"><b>Please Enter Your Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        <input type="text"  name="score" id="score" hidden>
+        <button type="submit" class="btn">Go!</button>
+    </form>
 </div> 
 
 
