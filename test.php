@@ -27,7 +27,7 @@ echo " <p> Hello: {$_COOKIE['username']}. Your high score is: {$_COOKIE['myScore
 <audio id="audio" src="./Public/Sounds/bonk2.mp3"></audio>
 <button onclick='play()'>BONK</button>
 
-<button onclick="displayForm()">HideTest</button>
+<!-- <button onclick="displayForm()">HideTest</button> -->
 
 <script>
 // var finalScore =  
@@ -267,13 +267,13 @@ function retry(){
 
 </script>
 
-
+<br>
 <button onclick="startGame()">Start the Game!</button>
 <button onmousedown="accelerate(-0.8)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <button onclick="location.reload();" id="retry_btn" style="display: none">Try Again?</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
-<p> The Final Score is: <span id="endScore"></span> </p>
+
 
 
 <div id="myForm" style="display: none">
