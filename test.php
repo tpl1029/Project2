@@ -155,9 +155,9 @@ function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
+            finalScore();
             displayForever();
             retry();
-            finalScore();
             return;
         } 
     }
@@ -241,14 +241,12 @@ function retry(){
     var x = document.getElementById("retry_btn");
   if (x.style.display === "none") {
     x.style.display = "block";
+    } 
   }
   
   function finalScore(){
-    document.getElementById("endScore").innerHTML = "Hello World";
-  }
-  
-  
-}
+    document.getElementById("endScore").innerHTML = testScore;
+  }  
 
 </script>
 
@@ -258,7 +256,7 @@ function retry(){
 <button onclick="location.reload();" id="retry_btn" style="display: none">Try Again?</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
-<p id='endScore'> The score is </p>
+<p id="endScore"> </p>
 
 
 <div id="myForm" style="display: none">
