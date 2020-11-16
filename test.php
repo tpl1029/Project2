@@ -9,10 +9,13 @@ canvas {
 }
 </style>
 </head>
-<body onload="loadgame()">
+<body onload="loadgame()"></body>
 <?php
 
 session_start();
+
+
+
 
 if(isset($_POST["name"])) 
 setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 30), "/");
@@ -27,11 +30,15 @@ echo " <p> The value in the cookie is {$_COOKIE['username']}  </p>";
 <button onclick="displayForm()">HideTest</button>
 
 <script>
+// var finalScore =  
+//             setcookie("password", 'testScore', time()+(86400 * 30), "/"); 
+//             echo " <p> The high score is {$_COOKIE['password']} </p>";}  ?>;
+
 var img = document.getElementById("bird")
 
 var myGamePiece;
 var myObstacles = [];
-var myScore;
+var myScore = 0;
 var hide;
 
 function loadgame(){
@@ -154,12 +161,16 @@ var testScore = -3;
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i])) {
-            finalScore();
-            displayForever();
-            retry();
-            return;
-        } 
+        if (myGamePiece.crashWith(myObstacles[i])) {           
+            if (testScore > myScore ) {
+                displayForever();
+                finalScore();
+                
+            } else{
+            retry();            
+            return;            
+            } 
+        }
     }
     myGameArea.clear();
     myBackground.speedX = -1;
@@ -244,9 +255,15 @@ function retry(){
     } 
   }
   
+//   function finaltest(){
+//     document.getElementById("endScore").innerHTML = testScore;
+//   }  
+
   function finalScore(){
-    document.getElementById("endScore").innerHTML = testScore;
-  }  
+    myScore = document.cookie = testScore;
+    document.getElementById("endScore").innerHTML = myScore;
+  }
+  
 
 </script>
 
@@ -256,7 +273,7 @@ function retry(){
 <button onclick="location.reload();" id="retry_btn" style="display: none">Try Again?</button>
 <p>Use the ACCELERATE button to stay in the air</p>
 <p>How long can you stay alive?</p>
-<p id="endScore"> </p>
+<p> The Final Score is: <span id="endScore"></span> </p>
 
 
 <div id="myForm" style="display: none">
