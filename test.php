@@ -13,11 +13,13 @@ canvas {
 <?php
 
 session_start();
-if(isset($_POST['name']) && isset($_POST['score'])) {
-setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 30), "/");
-setcookie("myScore", trim(htmlentities($_POST['score'])), time()+(86400 * 30), "/");
-echo " <p> Hello: {$_COOKIE['username']}. Your high score is: {$_COOKIE['myScore']} </p>";
-} 
+if(isset($_POST['name']) && isset($_POST['score']) && $_POST['score'] > $_COOKIE['myScore']) {
+setcookie("username", trim(htmlentities($_POST['name'])), time()+(86400 * 1), "/");
+setcookie("myScore", trim(htmlentities($_POST['score'])), time()+(86400 * 1), "/");
+header("Refresh:0");}
+
+if (isset($_COOKIE['username']) && isset($_COOKIE['myScore'])){
+echo " <p> Hello: {$_COOKIE['username']}. Your high score is: {$_COOKIE['myScore']} </p>";} 
 
 ?>
 <img id='bird' width='50' height='50' style="display: none" src="./Public/Images/flappy-bird.gif">
